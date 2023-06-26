@@ -1,0 +1,30 @@
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
+
+// Given an array of integers nums and an integer target, 
+// return indices of the two numbers such that they add up to target.
+
+// You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+// You can return the answer in any order.
+
+// Hashmap Solution
+// Time: O(n)
+// Space: O(n)
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> prevMap;
+        int diff;
+        for (int i = 0; i < nums.size(); ++i) {
+            diff = target - nums[i];
+            if (prevMap.find(diff) != prevMap.end()) {
+                return {prevMap[diff], i};
+            }
+            prevMap.insert({nums[i], i});
+        }
+        return {-1, -1};
+    }
+};
